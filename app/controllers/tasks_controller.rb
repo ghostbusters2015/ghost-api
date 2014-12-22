@@ -1,10 +1,14 @@
 class TasksController < ApplicationController
+  include ActionController::MimeResponds
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = Task.all
 
-    render json: @tasks
+    respond_to do |format|
+      format.json { render json: @tasks }
+      format.xml { render xml: @tasks }
+    end
   end
 
   # GET /tasks/1
